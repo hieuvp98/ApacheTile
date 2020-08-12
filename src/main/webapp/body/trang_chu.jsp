@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <main>
-    <h1>ITStudent</h1>
+    <h1>ITStudent đo chiều cao</h1>
     <input id="input-height" type="number">
     <button id="btn-alert">Tính toán</button>
 </main>

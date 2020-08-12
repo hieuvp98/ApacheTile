@@ -11,13 +11,9 @@
 
     <definition name="trang-chu" extends="common">
         <put-attribute name="title" value="trang chu"/>
-        <put-attribute name="body" value="/body/trang-chu.jsp" />
+        <put-attribute name="body" value="/body/trang_chu.jsp" />
     </definition>
 
-<!--    <definition name="trang-chu" extends="common">-->
-<!--        <put-attribute name="title" value="Trang chu"/>-->
-<!--        <put-attribute name="body" value="/body/trang_chu.jsp" />-->
-<!--    </definition>-->
 
     <definition name="san-pham" extends="common">
         <put-attribute name="title" value="San pham"/>

@@ -1,11 +1,14 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: hieuv
-  Date: 10-Aug-20
-  Time: 6:00 PM
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<div style="width: 100%; height: 100px; border: 1px blue solid">
-
-</div>
+<!-- /.content-wrapper -->
+<footer class="container">
+    <div class="row justify-content-center">
+        <div class="main-footer">
+            <strong>Copyright &copy; 2020 <a href="https://www.facebook.com/itsv.vn"
+                                             target="_blank">ITStudent</a>.</strong>
+            All rights reserved.
+            <div class="float-right d-none d-sm-inline-block">
+                <b>Version</b> 1.0.0
+            </div>
+        </div>
+    </div>
+</footer>

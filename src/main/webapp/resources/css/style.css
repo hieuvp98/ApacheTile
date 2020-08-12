@@ -1,0 +1,120 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: 100%;
+    height: 100%;
+}
+
+.main-content{}
+
+.title-page{}
+
+.title-page .text-title-page{
+    margin-top: 20px;
+}
+
+.tool-page{}
+
+.tool-page .btn-add{}
+
+.tool-page .input-search{}
+
+.input-search input{}
+
+.input-search .input-group-append {}
+
+.input-search .input-group-append .input-group-text{
+    color: #fff;
+    background-color: #0069d9;
+    border-color: #0062cc;
+    width: 111px;
+    cursor: pointer;
+}
+
+.input-search .input-group-append:hover .input-group-text{
+    color: #fff;
+    background-color: #0062cc;
+    border-color: #005cbf;
+    width: 111px;
+}
+
+.input-search .input-group-append .input-group-text i {
+    margin-right: 5px;
+}
+
+.table-data{
+    vertical-align: middle;
+}
+
+.table-data th {
+    vertical-align: middle;
+}
+
+.table-data td {
+    vertical-align: middle;
+}
+
+
+.table-data thead{}
+
+.table-data thead th{
+    text-align: center;
+}
+
+.table-data tbody{}
+
+.table-data tbody td{}
+
+.table-data tbody th{
+    text-align: center;
+}
+
+.mbt-10{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.active a.nav-link{
+    font-weight: 500 !important;
+    color: #ffc700 !important;
+}
+
+.form-custom label {
+    font-weight: 500;
+}
+
+.page-login{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    background: #ffc700;
+}
+
+.page-login .card{}
+
+.page-login .card .card-body{}
+
+.page-login .card-body .card-title{}
+
+.page-login .card-title img{
+    margin-top: 30px;
+}
+
+.page-login .card-title h3{
+    text-transform: uppercase;
+    color: #ffc700;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.page-login .form-group{}
+
+#btn-login{margin-top: 20px;margin-bottom: 30px;}
+
+.h100{
+    height: 100%;
+}
