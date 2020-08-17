@@ -61,6 +61,19 @@ async function ajaxPut(url, data) {
     return rs;
 }
 
+async function ajaxDelete(url) {
+    let rs = null;
+    await $.ajax({
+        type: 'DELETE',
+        url: urlBack + url,
+        timeout: 30000,
+        success: function (result) {
+            rs = result
+        }
+    })
+    return rs;
+}
+
 async function ajaxUploadFile(url, file) {
     let rs = null;
     await $.ajax({

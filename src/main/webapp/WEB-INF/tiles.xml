@@ -14,9 +14,13 @@
         <put-attribute name="body" value="/body/trang_chu.jsp" />
     </definition>
 
-
     <definition name="san-pham" extends="common">
         <put-attribute name="title" value="San pham"/>
         <put-attribute name="body" value="/body/san_pham.jsp" />
+    </definition>
+
+    <definition name="danh-muc" extends="common">
+        <put-attribute name="title" value="Danh muc"/>
+        <put-attribute name="body" value="/body/danh_muc.jsp" />
     </definition>
 </tiles-definitions>

@@ -42,24 +42,31 @@ function getAllProducts() {
 
 function fillTable() {
     let content = '';
-
     for (let i = 0; i < products.length; i++) {
         let product = products[i];
         content += `<tr>
-                <td>${i + 1}</td>
-                <td><img style="max-width: 100px" src="${product.image}" ></td>
-                <td>${product.name}</td>
-                <td>${product.price}</td>
-                <td>${product.create}</td>
-                <td>${product.quantity}</td>
-                <td> <button type="button" class="btn btn-warning btn-change-product" product-id="${product.id}" data-toggle="modal"
-                            data-target="#detail-modal"><i class="fas fa-pen"></i>
+                                <th scope="row">${i+1}</th>
+                                <td>
+                                <img src="${product.image}"
+                                        width="80px">
+                                </td>
+                                <td>${product.name}</td>
+                                <td>${product.price}</td>
+                                <td>${product.create}</td>
+                                <td>${product.quantity}</td>
+                                <td>
+                                    <button type="button" class="btn btn-warning btn-change-product" product-id="${product.id}" data-toggle="modal"
+                            data-target="#detail-modal" >
+                                    <i class="fas fa-pen"></i>
                                         Sửa
                                     </button>
-                                    <button type="button" class="btn btn-danger btn-delete-product" product-id="${product.id}" > <i class="fas fa-trash-alt"></i>
+                                    <button type="button" class="btn btn-danger btn-delete-product" product-id="${product.id}" data-toggle="modal"
+                            data-target="#delete-modal">
+                                     <i class="fas fa-trash-alt"></i>
                                         Xóa
-                                    </button></td>
-            </tr>`;
+                                    </button>
+                                </td>
+                            </tr>`;
     }
     $('#table-content').html(content);
     changeProductEvent();
@@ -68,13 +75,13 @@ function fillTable() {
 
 function addProductEvent() {
     $('#btn-them').on('click', function () {
-        //clear cotnent
-        $('#input-ten').val('')
-        $('#input-hinh-anh').val('')
-        $('#input-gia').val(0)
-        $('#input-ngay-tao').val('')
-        $('#input-ton-kho').val('')
-        $('#textarea-gioi-thieu').val('')
+        //clear content
+        $('#input-ten').val('');
+        $('#input-hinh-anh').val('');
+        $('#input-gia').val(0);
+        $('#input-ngay-tao').val('');
+        $('#input-ton-kho').val('');
+        $('#textarea-gioi-thieu').val('');
         //set submit event
         $('#btn-submit').off('click').on('click', function () {
             let product = {
@@ -87,9 +94,8 @@ function addProductEvent() {
                 introduction: $('#textarea-gioi-thieu').val(),
                 type: $('#select-add-loai-san-pham').val()
             }
-
             products.push(product);
-            alert("Thêm sản phẩm thành công");
+            alterSuccess("Thêm sản phẩm thành công");
             $('#detail-modal').modal('hide');
             fillTable();
         })
@@ -119,7 +125,7 @@ function changeProductEvent() {
             product.introduction = $('#textarea-gioi-thieu').val()
             product.type = $('#select-add-loai-san-pham').val()
 
-            alert("Thay đổi sản phẩm thành công");
+            alterSuccess("Thay đổi sản phẩm thành công");
             $('#detail-modal').modal('hide');
             fillTable();
         })
@@ -128,10 +134,10 @@ function changeProductEvent() {
 
 function deleteEvent() {
     $('.btn-delete-product').on("click", function () {
-        let productId = parseInt($(this).attr("product-id"));
-        products = products.filter(p => p.id !== productId);
+        let productId = $(this).attr("product-id");
+        products = products.filter(p => p.id != productId);
         fillTable();
-        alert("Đã xóa sản phẩm")
+        alterSuccess("Đã xóa sản phẩm")
     })
 }
 

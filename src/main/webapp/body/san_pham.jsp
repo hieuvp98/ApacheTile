@@ -91,7 +91,6 @@
         </div>
     </div>
 </div>
-
 <!-- Modal Delete -->
 <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="delete-modal"
      aria-hidden="true">
@@ -170,26 +169,26 @@
                                 <th scope="col" style="width: 175px;">Chức năng</th>
                             </tr>
                             </thead>
-                            <tbody id="table-content">
-                            <tr>
-                                <th scope="row">1</th>
-                                <td><img
-                                        src="https://cdn.cellphones.com.vn/media/catalog/product/cache/7/thumbnail/300x/9df78eab33525d08d6e5fb8d27136e95/i/p/iphone11-purple-select-2019.png"
-                                        alt="" width="80px"></td>
-                                <td>Ipon 12</td>
-                                <td>16000000</td>
-                                <td>2020/08/12</td>
-                                <td>15</td>
-                                <td>
-                                    <button type="button" class="btn btn-warning btn-change-product"><i class="fas fa-pen"></i>
-                                        Sửa
-                                    </button>
-                                    <button type="button" class="btn btn-danger btn-delete-product" data-toggle="modal"
-                                            data-target="#delete-modal"><i class="fas fa-trash-alt"></i>
-                                        Xóa
-                                    </button>
-                                </td>
-                            </tr>
+                            <tbody id="table-content" class="itstudent">
+<%--                            <tr>--%>
+<%--                                <th scope="row">1</th>--%>
+<%--                                <td><img--%>
+<%--                                        src="https://cdn.cellphones.com.vn/media/catalog/product/cache/7/thumbnail/300x/9df78eab33525d08d6e5fb8d27136e95/i/p/iphone11-purple-select-2019.png"--%>
+<%--                                        alt="" width="80px"></td>--%>
+<%--                                <td>Ipon 12</td>--%>
+<%--                                <td>16000000</td>--%>
+<%--                                <td>2020/08/12</td>--%>
+<%--                                <td>15</td>--%>
+<%--                                <td>--%>
+<%--                                    <button type="button" class="btn btn-warning btn-change-product"><i class="fas fa-pen"></i>--%>
+<%--                                        Sửa--%>
+<%--                                    </button>--%>
+<%--                                    <button type="button" class="btn btn-danger btn-delete-product" data-toggle="modal"--%>
+<%--                                            data-target="#delete-modal"><i class="fas fa-trash-alt"></i>--%>
+<%--                                        Xóa--%>
+<%--                                    </button>--%>
+<%--                                </td>--%>
+<%--                            </tr>--%>
                             </tbody>
                         </table>
                     </div>
