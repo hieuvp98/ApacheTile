@@ -6,11 +6,11 @@ $(function () {
 })
 
 function getAllCategories() {
-   ajaxGet("api/public/categories")
-       .then(rs => {
+    ajaxGet("api/public/categories")
+        .then(function (rs) {
             categories = rs;
             fillTable();
-       }).catch(ex => alterDanger("Có lỗi xảy ra"))
+        }).catch(ex => alterDanger("Có lỗi xảy ra"))
 }
 
 function fillTable() {
@@ -18,7 +18,7 @@ function fillTable() {
     for (let i = 0; i < categories.length; i++) {
         let category = categories[i];
         content += `<tr>
-                                <th scope="row">${i+1}</th>
+                                <th scope="row">${i + 1}</th>
                                 <td>${category.name}</td>
                                 <td>
                                     <button type="button" class="btn btn-warning btn-change-category" category-id="${category.id}" data-toggle="modal"
@@ -81,7 +81,7 @@ function deleteEvent() {
     $('.btn-delete-category').on("click", function () {
         let categoryId = $(this).attr("category-id");
         $('#btn-xoa').off('click').on('click', function () {
-            ajaxDelete('api/admin/category?id='+categoryId)
+            ajaxDelete('api/admin/category?id=' + categoryId)
                 .then(rs => {
                     getAllCategories();
                     alterSuccess("Đã xóa danh mục");

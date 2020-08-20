@@ -1,5 +1,6 @@
 // chờ html load xong
 
+
 $(function () {
    //set sự kiện
    $(`#btn-alert`).on('click', function () {

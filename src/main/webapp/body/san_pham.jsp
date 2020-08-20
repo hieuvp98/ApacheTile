@@ -44,7 +44,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Tồn kho</label>
-                            <input type="number" class="form-control" id="input-ton-kho"
+                            <input type="number" class="form-control" id="input-ton-kho" value="1"
                                    placeholder="Nhập số hàng trong kho">
                             <div class="invalid-feedback">
                                 Error!

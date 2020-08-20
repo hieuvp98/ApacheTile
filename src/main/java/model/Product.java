@@ -9,6 +9,7 @@ public class Product {
     private String image;
     private double price;
     private int quantity;
+    private String introduction;
     private Date createDate;
     private boolean deleted;
     private int categoryId;
@@ -95,6 +96,15 @@ public class Product {
 
     public Product setImage(String image) {
         this.image = image;
+        return this;
+    }
+
+    public String getIntroduction() {
+        return introduction;
+    }
+
+    public Product setIntroduction(String introduction) {
+        this.introduction = introduction;
         return this;
     }
 }

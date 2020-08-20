@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <link rel="icon" href="https://scontent.fhan5-4.fna.fbcdn.net/v/t1.0-9/p960x960/57540167_1369260163198947_1293280215501373440_o.png?_nc_cat=104&_nc_sid=85a577&_nc_ohc=kV2J_2x3JTMAX-TSqz9&_nc_ht=scontent.fhan5-4.fna&oh=8855829c3e1d584b6545d75aeaeb2cda&oe=5F21C425" type="image/gif" sizes="16x16">
+    <link rel="icon" href="" type="image/gif" sizes="16x16">
     <title><tiles:getAsString name="title" /></title>
     <!-- Required meta tags -->
     <meta charset="utf-8">

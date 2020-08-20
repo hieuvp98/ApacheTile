@@ -1,43 +1,46 @@
 let products = [];
-let count = 3;
 
 $(function () {
+    getAllCategories();
     getAllProducts();
-    fillTable();
     addProductEvent();
+    searchEvent();
+    test(funA);
 })
 
-function getAllProducts() {
-    products.push({
-        id: 1,
-        name: "Iphone",
-        image: "https://cdn.cellphones.com.vn/media/catalog/product/cache/7/thumbnail/300x/9df78eab33525d08d6e5fb8d27136e95/i/p/iphone11-purple-select-2019.png",
-        price: 26_000_000,
-        create: "12/08/2020",
-        quantity: 15,
-        introduction: "Iphone",
-        type: 1
+function test(a) {
+    a(5);
+}
+
+function funA(num = 5) {
+    console.log("b");
+}
+
+function getAllCategories() {
+    ajaxGet(`api/public/categories`)
+        .then(rs => {
+            let contentCates = '';
+
+            // for (const cate in rs) {
+            //     contentCates.concat(`<option value="${cate.id}">${cate.name}</option>`)
+            // }
+
+            // rs.forEach( cate => contentCates.concat(`<option value="${cate.id}">${cate.name}</option>`))
+
+            let content = rs.map(cate => `<option value="${cate.id}">${cate.name}</option>`).join('');
+            $('#select-search-loai-san-pham').html('<option value="0">Loại sản phẩm</option>' + content);
+            $('#select-add-loai-san-pham').html(content);
+        }).catch(ex => {
+        console.log(ex)
     })
-    products.push({
-        id: 2,
-        name: "Dell Xps",
-        image: "https://www.notebookcheck.net/fileadmin/Notebooks/News/_nc3/15891818721_thumb.jpg",
-        price: 50_000_000,
-        create: "12/08/2020",
-        quantity: 15,
-        introduction: "XPS",
-        type: 2
-    })
-    products.push({
-        id: 3,
-        name: "MSI prestige",
-        image: "https://asset.msi.com/resize/image/global/product/product_10_20190903100138_5d6dc9820d7d2.png62405b38c58fe0f07fcef2367d8a9ba1/1024.png",
-        price: 50000,
-        create: "12/08/2020",
-        quantity: 15,
-        introduction: "MSI",
-        type: 2
-    })
+}
+
+function getAllProducts(brandId = 0, categoryId = 0, nameAsc = true) {
+    ajaxGet(`api/public/products?brand-id=${brandId}&category-id=${categoryId}&name-asc=${nameAsc}`)
+        .then(function (rs) {
+            products = rs;
+            fillTable();
+        }).catch(ex => alterDanger("Có lỗi xảy ra"))
 }
 
 function fillTable() {
@@ -45,14 +48,14 @@ function fillTable() {
     for (let i = 0; i < products.length; i++) {
         let product = products[i];
         content += `<tr>
-                                <th scope="row">${i+1}</th>
+                                <th scope="row">${i + 1}</th>
                                 <td>
                                 <img src="${product.image}"
                                         width="80px">
                                 </td>
                                 <td>${product.name}</td>
                                 <td>${product.price}</td>
-                                <td>${product.create}</td>
+                                <td>${product.createDate}</td>
                                 <td>${product.quantity}</td>
                                 <td>
                                     <button type="button" class="btn btn-warning btn-change-product" product-id="${product.id}" data-toggle="modal"
@@ -60,7 +63,7 @@ function fillTable() {
                                     <i class="fas fa-pen"></i>
                                         Sửa
                                     </button>
-                                    <button type="button" class="btn btn-danger btn-delete-product" product-id="${product.id}" data-toggle="modal"
+                                    <button  type="button" class="btn btn-danger btn-delete-product" product-id="${product.id}" data-toggle="modal"
                             data-target="#delete-modal">
                                      <i class="fas fa-trash-alt"></i>
                                         Xóa
@@ -73,6 +76,28 @@ function fillTable() {
     deleteEvent();
 }
 
+function checkInputProduct() {
+    let count = 4;
+
+    if ($('#input-ten').val().length === 0) {
+        alterWarning("Không được bỏ trống tên");
+        count--;
+    }
+    if ($('#input-gia').val().length === 0) {
+        alterWarning("Không được bỏ trống giá");
+        count--;
+    }
+    if ($('#input-ton-kho').val().length === 0) {
+        alterWarning("Không được bỏ trống tồn kho");
+        count--;
+    }
+    if ($('#input-hinh-anh').val().length === 0) {
+        alterWarning("Không được bỏ trống hình ảnh");
+        count--;
+    }
+    return count === 4;
+}
+
 function addProductEvent() {
     $('#btn-them').on('click', function () {
         //clear content
@@ -80,24 +105,31 @@ function addProductEvent() {
         $('#input-hinh-anh').val('');
         $('#input-gia').val(0);
         $('#input-ngay-tao').val('');
-        $('#input-ton-kho').val('');
+        $('#input-ton-kho').val(1);
         $('#textarea-gioi-thieu').val('');
         //set submit event
         $('#btn-submit').off('click').on('click', function () {
+            if (!checkInputProduct())
+                return;
             let product = {
-                id: count++,
                 name: $('#input-ten').val(),
                 image: $('#input-hinh-anh').val(),
                 price: $('#input-gia').val(),
-                create: new Date(),
                 quantity: $('#input-ton-kho').val(),
                 introduction: $('#textarea-gioi-thieu').val(),
-                type: $('#select-add-loai-san-pham').val()
+                categoryId: $('#select-add-loai-san-pham').val(),
+                brandId: 1
             }
-            products.push(product);
-            alterSuccess("Thêm sản phẩm thành công");
-            $('#detail-modal').modal('hide');
-            fillTable();
+            ajaxPost('api/admin/product', product)
+                .then(rs => {
+                    alterSuccess("Thêm sản phẩm thành công");
+                    $('#detail-modal').modal('hide');
+                    getAllProducts();
+                }).catch(ex => {
+                console.log(ex);
+                alterDanger("Thêm sản phẩm thất bại");
+            })
+
         })
     })
 }
@@ -117,17 +149,23 @@ function changeProductEvent() {
 
         //set change event
         $('#btn-submit').off('click').on('click', function () {
-
+            if (!checkInputProduct())
+                return;
             product.name = $('#input-ten').val()
             product.image = $('#input-hinh-anh').val()
             product.price = $('#input-gia').val()
             product.quantity = $('#input-ton-kho').val()
             product.introduction = $('#textarea-gioi-thieu').val()
             product.type = $('#select-add-loai-san-pham').val()
-
-            alterSuccess("Thay đổi sản phẩm thành công");
-            $('#detail-modal').modal('hide');
-            fillTable();
+            ajaxPut('api/admin/product', product)
+                .then(rs => {
+                    alterSuccess("Thay đổi sản phẩm thành công");
+                    $('#detail-modal').modal('hide');
+                    fillTable();
+                }).catch(ex => {
+                console.log(ex);
+                alterDanger("Cập nhật sản phẩm thất bại");
+            })
         })
     })
 }
@@ -135,10 +173,46 @@ function changeProductEvent() {
 function deleteEvent() {
     $('.btn-delete-product').on("click", function () {
         let productId = $(this).attr("product-id");
-        products = products.filter(p => p.id != productId);
-        fillTable();
-        alterSuccess("Đã xóa sản phẩm")
+        $('#btn-xoa').off('click').on('click', function () {
+            ajaxDelete('api/admin/product?id=' + productId)
+                .then(rs => {
+                    products = products.filter(p => p.id != productId);
+                    fillTable();
+                    $('#delete-modal').modal('hide');
+                    alterSuccess("Đã xóa sản phẩm")
+                }).catch(ex => {
+                console.log(ex);
+                alterDanger("Xóa sản phẩm thất bại");
+            })
+        })
     })
+}
+
+function searchEvent() {
+    $('#select-search-loai-san-pham').on('change', function () {
+        getAllProducts(0, $(this).val())
+    });
+
+    $('#select-sap-xep').on('change', function () {
+        switch (parseInt($(this).val())) {
+            case 1:
+                products.sort((p1, p2) => p1.name.localeCompare(p2.name));
+                fillTable();
+                break;
+            case 2:
+                products.sort((p1, p2) => -p1.name.localeCompare(p2.name));
+                fillTable();
+                break;
+        }
+    })
+}
+
+function funSugarDaddy() {
+
+    function funBaby() {
+        console.log("hello");
+    }
+
 }
 
 

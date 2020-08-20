@@ -22,7 +22,6 @@ async function ajaxGet(url) {
         type: 'GET',
         dataType: "json",
         url: urlBack + url,
-        timeout: 30000,
         success: function (result) {
             rs = result;
         }
